@@ -8,13 +8,23 @@ const extractToken = (authHeaderValue: string) => {
   return token
 }
 
+const extractTokenV2 = (authHeader: string) => {
+  const [, token] = authHeader.split("=")
+  return token
+}
+
 const ensureAuth = (event) => {
   const authHeaderValue = getRequestHeader(event, 'authorization')
-  if (typeof authHeaderValue === 'undefined') {
+  const authHeaderValueCookie = getRequestHeader(event, 'cookie')
+  if (typeof authHeaderValue === 'undefined' && typeof authHeaderValueCookie === 'undefined') {
     throw createError({ statusCode: 403, statusMessage: 'Need to pass valid Bearer-authorization header to access this endpoint' })
   }
 
-  const extractedToken = extractToken(authHeaderValue)
+  if (typeof authHeaderValueCookie === 'undefined') {
+    throw createError({ statusCode: 403, statusMessage: 'Need to pass valid Bearer-authorization header to access this endpoint' })
+  }
+
+  const extractedToken = authHeaderValue ? extractToken(authHeaderValue) : extractTokenV2(authHeaderValueCookie)
   try {
     return jwt.verify(extractedToken, SECRET)
   } catch (error) {
