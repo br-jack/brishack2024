@@ -1,11 +1,9 @@
-import { getServerSession } from '#auth'
+import { ensureAuth } from '../auth/session.get';
 
 export default defineEventHandler(async (event) => {
   const name = getRouterParam(event, "id");
-  console.log(name);
 
-  const session = await getServerSession(event)
-  console.log(session)
+  const session = ensureAuth(event)
 
   return {
     name: name,

@@ -29,7 +29,6 @@ async function signInWithCredentials() {
       "Authorization": `${token.value}`
     }
   }))
-  console.log(await $fetch("/api/users/12313"))
 }
 </script>
 <template>

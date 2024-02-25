@@ -13,7 +13,7 @@ const extractTokenV2 = (authHeader: string) => {
   return token
 }
 
-const ensureAuth = (event) => {
+export const ensureAuth = (event) => {
   const authHeaderValue = getRequestHeader(event, 'authorization')
   const authHeaderValueCookie = getRequestHeader(event, 'cookie')
   if (typeof authHeaderValue === 'undefined' && typeof authHeaderValueCookie === 'undefined') {
