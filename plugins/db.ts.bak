@@ -1,0 +1,16 @@
+import sqlite3 from 'sqlite3'
+import type { NitroAppPlugin } from 'nitropack'
+
+export default defineNitroPlugin(nitroPlugin => {
+    const dbPath = '`test_database.db'
+    // const db = new sqlite3.Database('~/test_database.db')
+    const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
+        if (err) {
+            console.error(`Error opening database: ${err.message}`);
+        } else {
+            console.log(`Connected to the database: ${dbPath}`);
+        }
+    });
+    // @ts-ignore
+    nitroPlugin.db = db
+})

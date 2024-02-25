@@ -6,7 +6,6 @@ export default defineNuxtConfig({
     '@sidebase/nuxt-auth'
   ],
   quasar: { /* */ },
-
   auth: {
     baseURL: '/api/auth',
     provider: {
