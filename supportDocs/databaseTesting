@@ -1,0 +1,4 @@
+INSERT INTO Institution VALUES ("Bristol Hospitals", "ABC", "Bristol Hospital Trust");
+
+INSERT INTO MedUsers VALUES ("John the Ambulance Driver", "ABC", "John", "Bristol Hospitals");
+INSERT INTO MedUsers VALUES ("John the Doctor", "ABC", "John", "Bristol Hospitals");
