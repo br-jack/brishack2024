@@ -6,9 +6,18 @@ export default defineNuxtConfig({
     '@sidebase/nuxt-auth'
   ],
   quasar: { /* */ },
+
   auth: {
+    baseURL: '/api/auth',
     provider: {
-      type: 'local'
+      type: 'local',
+      endpoints: {
+        signIn: { path: '/login', method: 'post' },
+        signOut: { path: '/logout', method: 'post' },
+        signUp: { path: '/register', method: 'post' },
+        getSession: { path: '/user', method: 'get' }
+      },
+      token: { signInResponseTokenPointer: '/token/accessToken' },
     }
   }
 })
