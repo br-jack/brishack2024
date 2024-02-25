@@ -3,18 +3,18 @@ INSERT INTO Institution VALUES ("Bristol Hospitals", "ABC", "Bristol Hospital Tr
 INSERT INTO MedUsers VALUES ("John the Ambulance Driver", "ABC", "John", "Bristol Hospitals");
 INSERT INTO MedUsers VALUES ("John the Doctor", "ABC", "John", "Bristol Hospitals");
 
-INSERT INTO CivUsers VALUES ("John the Patient", "John", "01234 567 890", 1, "ABC" "1990-01-01", "A+", 1);
-INSERT INTO CivUsers VALUES ("Jane the Patient", "Jane", "01234 567 891", 1, "ABC" "1990-01-01", "A+", 1);
+INSERT INTO CivUsers VALUES ("John the Patient", "John", "01234 567 890", 1, "ABC", 1990-01-01, "A+", 1);
+INSERT INTO CivUsers VALUES ("Jane the Patient", "Jane", "01234 567 891", 1, "ABC", 1990-01-01, "A+", 1);
 
 SELECT Name, Number, InfoPublicallyAvailable, DateOfBirth, BloodType, OrganDonor FROM CivUsers WHERE CivUsername = "John the Patient";
 SELECT InformationID, InfoName, AddInfo FROM Information WHERE CivUsername = "John the Patient";
 SELECT MedicationID, DoseFrequency, AdditionalNotes FROM Medication WHERE CivUsername = "John the Patient";
 
-UPDATE CivUsers SET Name = "Janice the patient", Number = "01234 567 891", InfoPublicallyAvailable = 1, PasswordHash = "ABC", DateOfBirth = "1990-01-01", BloodType = "A+", OrganDonor = 1 WHERE CivUsername = "Jane the Patient";
+UPDATE CivUsers SET Name = "Janice the patient", Number = "01234 567 891", InfoPublicallyAvailable = 1, PasswordHash = "ABC", DateOfBirth = 1990-01-01, BloodType = "A+", OrganDonor = 1 WHERE CivUsername = "Jane the Patient";
 INSERT INTO Information (CivUsername, InfoName, AddInfo) VALUES ("Jane the Patient", "Allergies", "Peanuts");
-INSERT INTO Medication (CivUsername, MedicationName, DoseFrequency, AdditionalNotes) VALUES ("Jane the Patient", "Suspicious pills" "Once a day", "Take with food");
+INSERT INTO Medication (CivUsername, MedicationName, DoseFrequency, AdditionalNotes) VALUES ("Jane the Patient", "Suspicious pills", "Once a day", "Take with food");
 INSERT INTO Information (CivUsername, InfoName, AddInfo) VALUES ("Jane the Patient", "Allergies", "Wheat");
-INSERT INTO Medication (CivUsername, MedicationName, DoseFrequency, AdditionalNotes) VALUES ("Jane the Patient", "Unsuspicious pills" "Once a day", "Take with food");
+INSERT INTO Medication (CivUsername, MedicationName, DoseFrequency, AdditionalNotes) VALUES ("Jane the Patient", "Unsuspicious pills", "Once a day", "Take with food");
 
 DELETE FROM Information WHERE InformationID = 1;
 DELETE FROM Medication WHERE MedicationID = 1;
