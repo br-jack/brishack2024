@@ -46,7 +46,11 @@ CREATE TABLE IF NOT EXISTS Medication(
 );
 
 
-
+CREATE TABLE IF NOT EXISTS Institution(
+	InstUsername VARCHAR(255) PRIMARY KEY, 
+	PasswordHash VARCHAR(64) NOT NULL,
+	Name VARCHAR(255) NOT NULL
+);
 
 CREATE TABLE IF NOT EXISTS MedUsers(
 	MedUsername VARCHAR(255) PRIMARY KEY,
@@ -54,11 +58,6 @@ CREATE TABLE IF NOT EXISTS MedUsers(
 	Name VARCHAR(255) NOT NULL,
 	InstUsername VARCHAR(255) NOT NULL,
 
-	FOREIGN KEY (Institution) REFERENCES Institution(InstUsername)
+	FOREIGN KEY (InstUsername) REFERENCES Institution(InstUsername)
 );
 
-CREATE TABLE IF NOT EXISTS Institution(
-	InstUsername VARCHAR(255) PRIMARY KEY, 
-	PasswordHash VARCHAR(64) NOT NULL,
-	Name VARCHAR(255) NOT NULL,
-);
