@@ -12,8 +12,10 @@
   "dependencies": {
     "@quasar/extras": "^1.16.9",
     "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.9.1",
     "nuxt": "^3.10.3",
     "quasar": "^2.14.5",
+    "sequelize": "^6.37.1",
     "vue": "^3.4.19",
     "vue-router": "^4.3.0"
   },
