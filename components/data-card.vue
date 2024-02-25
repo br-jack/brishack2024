@@ -1,13 +1,17 @@
+<script setup>
+defineProps(['title', 'info'])
+</script>
+
 <template>
-    <q-card dark bordered class="bg-grey-9 my-card">
+    <q-card dark bordered square flat class="bg-grey-9 my-card">
         <q-card-section>
-            <div class="text-h6">Our Changing Planet</div>
+            <div class="text-h6 text-center text-bold text-uppercase">{{ title }}</div>
         </q-card-section>
 
         <q-separator dark inset />
 
-        <q-card-section>
-            Testing
+        <q-card-section class="text-subtitle text-center">
+            {{ info }}
         </q-card-section>
     </q-card>
 </template>
