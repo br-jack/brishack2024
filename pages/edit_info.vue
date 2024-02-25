@@ -1,4 +1,5 @@
-<!--USER USE ONLY-->
+<!--USER AND INSTITUTION USE ONLY-->
+
 <script setup>
 import { definePageMeta } from '#imports'
 definePageMeta({
@@ -8,11 +9,15 @@ definePageMeta({
   }
 })
 const { signIn, token, data, status, lastRefreshedAt } = useAuth()
-const username = ref('')
-const password = ref('')
-const name = ref('')
 
-async function attemptChange() {
+async function attemptRegister() {
+
+    //gather data
+    const medInfo = {
+   
+    }
+
+    //send data off (unchecked)
     try {
     //do something
     } 
@@ -26,12 +31,7 @@ async function attemptChange() {
 
 <template>
     <div>
-      <h1>Add or Edit Tags</h1>
-
-
-      <button @click="attemptChange()">
-        Submit
-      </button>
+      <h1>Edit user information</h1>
   
       <pre>Data: {{ data || 'no session data present, are you logged in?' }}</pre>
       <pre>Last refreshed at: {{ lastRefreshedAt || 'no refresh happened' }}</pre>

@@ -1,4 +1,5 @@
-<!--USER USE ONLY-->
+<!--CAN BE SEEN WITHOUT LOGIN BUT CERTAIN INFORMATIN BLOCKED IF NOT MED USER-->
+
 <script setup>
 import { definePageMeta } from '#imports'
 definePageMeta({
@@ -8,30 +9,12 @@ definePageMeta({
   }
 })
 const { signIn, token, data, status, lastRefreshedAt } = useAuth()
-const username = ref('')
-const password = ref('')
-const name = ref('')
-
-async function attemptChange() {
-    try {
-    //do something
-    } 
-    catch (error) {
-    console.error(error)
-    }
-
-}
 
 </script>
 
 <template>
     <div>
-      <h1>Add or Edit Tags</h1>
-
-
-      <button @click="attemptChange()">
-        Submit
-      </button>
+      <h1>//USERs NAME</h1>
   
       <pre>Data: {{ data || 'no session data present, are you logged in?' }}</pre>
       <pre>Last refreshed at: {{ lastRefreshedAt || 'no refresh happened' }}</pre>
