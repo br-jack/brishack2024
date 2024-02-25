@@ -2,8 +2,8 @@ CREATE TABLE IF NOT EXISTS CivUsers(
 	CivUsername VARCHAR(255) PRIMARY KEY,
 	Name VARCHAR(255) NOT NULL,
 	Number VARCHAR(255),
-	InfoPublicallyAvailable TINYINT(1) NOT NULL DEFAULT 0,
 	PasswordHash VARCHAR(64) NOT NULL,
+	InfoPublicallyAvailable TINYINT(1) NOT NULL DEFAULT 0,
 	DateOfBirth DATE,
 	BloodType VARCHAR(8),
 	OrganDonor TINYINT(1)
