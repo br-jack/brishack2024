@@ -1,6 +1,5 @@
 export default defineEventHandler((event) => {
-  const name = getRouterParam(event, "id");
-
+  const name = getRouterParam(event, "id")
   return {
     name: name,
     medicalConditions: [

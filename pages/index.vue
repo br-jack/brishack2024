@@ -18,6 +18,8 @@
 
 const { data } = await useFetch('/api/users/hello')
 
+
+
 // { "name": "hello", "medicalConditions": ["A", "B", "C"], "bloodType": "O+", "allergies": ["D", "E", "F"], "currentMedicines": ["DRUG", "MORE DRUG"], "weight": 12.3, "height": 1.85, "dateOfBirth": 1708876645425, "address": "Woodland road", "organDoner": false, "medicalNotes": ["note 1", "note 2"] }
 
 // const formattedData = computed(() => {
