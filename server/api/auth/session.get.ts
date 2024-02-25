@@ -18,11 +18,12 @@ const ensureAuth = (event) => {
   try {
     return jwt.verify(extractedToken, SECRET)
   } catch (error) {
+    console.log(error)
     throw createError({ statusCode: 403, statusMessage: 'You must be logged in to use this endpoint' })
   }
 }
 
-export default eventHandler((event) => {
+export default eventHandler(async (event) => {
   const user = ensureAuth(event)
   return user
 })

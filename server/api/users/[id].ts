@@ -1,5 +1,12 @@
-export default defineEventHandler((event) => {
-  const name = getRouterParam(event, "id")
+import { getServerSession } from '#auth'
+
+export default defineEventHandler(async (event) => {
+  const name = getRouterParam(event, "id");
+  console.log(name);
+
+  const session = await getServerSession(event)
+  console.log(session)
+
   return {
     name: name,
     medicalConditions: [

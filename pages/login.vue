@@ -1,4 +1,11 @@
-<script setup>
+<script setup lang="ts">
+import { definePageMeta } from '#imports'
+definePageMeta({
+  auth: {
+    unauthenticatedOnly: true,
+    navigateAuthenticatedTo: '/',
+  }
+})
 const { signIn, token, data, status, lastRefreshedAt } = useAuth()
 const username = ref('')
 const password = ref('')
@@ -11,10 +18,17 @@ async function signInWithCredentials() {
     type: type.value // This needs to either be "CIV", "MED", "INT"
   }
   try {
-    console.log(await signIn(credentials))
+    await signIn(credentials, { redirect: false })
   } catch (error) {
     console.error(error)
   }
+
+  console.log(await $fetch("/api/auth/session", {
+    headers: {
+      "Authorization": `${token.value}`
+    }
+  }))
+  console.log(await $fetch("/api/users/12313"))
 }
 </script>
 <template>
@@ -28,6 +42,7 @@ async function signInWithCredentials() {
     </button>
 
     <pre>Data: {{ data || 'no session data present, are you logged in?' }}</pre>
+    <pre>Status: {{ status || 'no session data present, are you logged in?' }}</pre>
     <pre>Last refreshed at: {{ lastRefreshedAt || 'no refresh happened' }}</pre>
     <pre>JWT token: {{ token || 'no token present, are you logged in?' }}</pre>
   </div>

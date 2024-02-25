@@ -10,13 +10,17 @@ export default defineNuxtConfig({
     baseURL: '/api/auth',
     provider: {
       type: 'local',
-      endpoints: {
-        signIn: { path: '/login', method: 'post' },
-        signOut: { path: '/logout', method: 'post' },
-        signUp: { path: '/register', method: 'post' },
-        getSession: { path: '/user', method: 'get' }
-      },
+      // endpoints: {
+      //   signIn: { path: '/login', method: 'post' },
+      //   signOut: { path: '/logout', method: 'post' },
+      //   signUp: { path: '/register', method: 'post' },
+      //   getSession: { path: '/session', method: 'get' }
+      // },
       token: { signInResponseTokenPointer: '/token/accessToken' },
+      sessionDataType: { username: 'string', type: "CIV | MED | INT" }
+    },
+    session: {
+      enableRefreshPeriodically: 5000
     }
   }
 })
