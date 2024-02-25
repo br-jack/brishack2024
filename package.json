@@ -12,6 +12,7 @@
   "dependencies": {
     "@prisma/client": "^5.10.2",
     "@quasar/extras": "^1.16.9",
+    "bcrypt": "^5.1.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.9.1",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@sidebase/nuxt-auth": "^0.6.7",
+    "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.5",
     "nuxt-quasar-ui": "^2.0.7",
     "prisma": "^5.10.2",

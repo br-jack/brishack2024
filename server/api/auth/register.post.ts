@@ -1,3 +1,6 @@
+import bcrypt from "bcrypt";
+const SALT_ROUNDS = 10;
+
 export default eventHandler(async (event) => {
   interface bodyData {
     name: string,
@@ -10,5 +13,12 @@ export default eventHandler(async (event) => {
     organDonor: boolean
   }
   const result: bodyData = await readBody(event)
+  let userHash;
+  bcrypt
+    .hash(result.password, SALT_ROUNDS)
+    .then(hash => {
+      userHash = hash
+    })
+    .catch(err => console.error(err.message))
 
 })
