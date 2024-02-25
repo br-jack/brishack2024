@@ -1,4 +1,12 @@
+<!--USER USE ONLY-->
 <script setup>
+import { definePageMeta } from '#imports'
+definePageMeta({
+  auth: {
+    unauthenticatedOnly: true,
+    navigateAuthenticatedTo: '/',
+  }
+})
 const { signIn, token, data, status, lastRefreshedAt } = useAuth()
 const username = ref('')
 const name = ref('')
@@ -11,6 +19,7 @@ const donor = ref('')
 
 async function attemptRegister() {
 
+    //gather data
     const regInfo = {
     username: username.value,
     name: name.value,
@@ -22,7 +31,8 @@ async function attemptRegister() {
     donor: donor.value
     }
     console.log("here")
-        
+    
+    //send data off
     try {
     console.log(await $fetch("/api/auth/register", {
         method: 'POST',
