@@ -9,5 +9,6 @@ export default eventHandler(async (event) => {
   }
   const result: bodyData = await readBody(event);
   const session = ensureAuth(event);
+  console.log(result)
   insertMedication(session.username, result.medicationName, result.doseFrequency, result.additionalInfo)
 });

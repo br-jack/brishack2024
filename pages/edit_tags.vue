@@ -15,6 +15,7 @@ async function fetchInfo() {
     }
   })
   info.value = fetched
+  console.log(info.value)
 }
 
 async function attemptChange() {
@@ -60,15 +61,17 @@ await fetchInfo()
 
 <style scoped>
 .parent {
-display: grid; 
-  grid-template-columns: 3fr 1fr; 
-  grid-gap: 20px; 
-  width: 50%; 
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 20px;
+  width: 50%;
   text-align: center;
 }
+
 .child {
-margin: auto;
+  margin: auto;
 }
+
 .center {
   margin: auto;
   width: 90%;
