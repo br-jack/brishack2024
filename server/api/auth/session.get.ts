@@ -36,7 +36,6 @@ export const ensureAuth = (event: H3Event): Session => {
     // @ts-ignore
     return jwt.verify(extractedToken, SECRET)
   } catch (error) {
-    console.log(error)
     throw createError({ statusCode: 403, statusMessage: 'You must be logged in to use this endpoint' })
   }
 }

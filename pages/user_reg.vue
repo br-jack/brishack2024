@@ -31,10 +31,10 @@ async function attemptRegister() {
 
   //send data off
   try {
-    console.log(await $fetch("/api/auth/register", {
+    await $fetch("/api/auth/register", {
       method: 'POST',
       body: regInfo
-    }))
+    })
   }
 
   catch (error) {
