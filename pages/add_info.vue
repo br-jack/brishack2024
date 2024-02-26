@@ -50,18 +50,6 @@ async function attemptInput() {
         <label for="newInfo">Extra notes, information: </label>
         <textarea id="newInfo" type="text" cols="40" rows="8"/>
       </div>
-      <div>
-        <h1>Add information</h1>
-        
-        <NuxtLink to="/redir_info">Back</NuxtLink>
-        
-        <input v-model="infoName" placeholder="Information name" type="text" />
-        <input v-model="newInfo" placeholder="Value" type="text" />
-
-        <button @click="attemptInput()">
-        Add
-        </button>
-      </div>
     </div>
   </div>
 </template>
