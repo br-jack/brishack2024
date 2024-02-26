@@ -1,5 +1,12 @@
 <script setup>
 const { status, signOut } = useAuth()
+const clearStorage = function (key) {
+  if (key) {
+    localStorage.removeItem(key);
+  } else {
+    localStorage.clear();
+  }
+}
 </script>
 
 <template>
@@ -12,8 +19,8 @@ const { status, signOut } = useAuth()
         <q-btn color="white" text-color="black" label="Login" />
       </NuxtLink>
     </div>
-    <q-btn v-if="status === 'authenticated'" color="white" @click="signOut({ redirect: false })" text-color="black"
-      label="Signout" />
+    <q-btn v-if="status === 'authenticated'" color="white" @click="clearStorage('token'); signOut({ redirect: false })"
+      text-color="black" label="Signout" />
     <NuxtLink to='/add_info'>
       <q-btn color="white" text-color="black" label="Add Info" />
     </NuxtLink>
