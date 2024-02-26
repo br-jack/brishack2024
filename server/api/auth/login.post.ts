@@ -1,46 +1,52 @@
-import jwt from 'jsonwebtoken'
-import { verifyCivUser, verifyIntUser, verifyMedUser } from '../dbFuncs';
+import jwt from "jsonwebtoken";
+import { verifyCivUser, verifyIntUser, verifyMedUser } from "../dbFuncs";
 
-const refreshTokens: Record<number, Record<string, any>> = {}
-export const SECRET = 'This is a super strong and powerful secret'
-const UNATHORIZED_USER = createError({ statusCode: 403, statusMessage: "Unathorized user" })
+const refreshTokens: Record<number, Record<string, any>> = {};
+export const SECRET = "This is a super strong and powerful secret";
+const UNATHORIZED_USER = createError({
+  statusCode: 403,
+  statusMessage: "Unathorized user",
+});
 
 export default eventHandler(async (event) => {
-  const result = await readBody(event)
-  const { username, password, type } = result
+  const result = await readBody(event);
+  const { username, password, type } = result;
 
-  let validUser
+  let validUser;
   if (type === "MED") {
-    validUser = await verifyMedUser(username, password)
+    validUser = await verifyMedUser(username, password);
   }
   if (type === "CIV") {
-    validUser = await verifyCivUser(username, password)
+    validUser = await verifyCivUser(username, password);
   }
   if (type === "INT") {
-    validUser = await verifyIntUser(username, password)
+    validUser = await verifyIntUser(username, password);
   }
 
   if (!validUser) {
-    throw UNATHORIZED_USER
+    throw UNATHORIZED_USER;
   }
 
-  const expiresIn = 60 * 60 * 24
-  const refreshToken = Math.floor(Math.random() * (1000000000000000 - 1 + 1)) + 1
+  const expiresIn = 60 * 60 * 24;
+  const refreshToken =
+    Math.floor(Math.random() * (1000000000000000 - 1 + 1)) + 1;
   const user = {
     username,
-    type
-  }
+    type,
+  };
 
-  const accessToken = jwt.sign({ ...user, scope: ['user'] }, SECRET, { expiresIn })
+  const accessToken = jwt.sign({ ...user, scope: ["user"] }, SECRET, {
+    expiresIn,
+  });
   refreshTokens[refreshToken] = {
     accessToken,
-    user
-  }
+    user,
+  };
 
   return {
     token: {
       accessToken,
-      refreshToken
-    }
-  }
-})
+      refreshToken,
+    },
+  };
+});
