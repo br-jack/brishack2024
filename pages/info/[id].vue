@@ -7,12 +7,17 @@ const tagOwner = await $fetch(`/api/info/tag/${tagID}`, {
         "Authorization": token
     }
 })
+const information = await $fetch(`/api/users/${tagOwner}`, {
+    headers: {
+        "Authorization": token
+    }
+})
 </script>
 
 
 <template>
-    <div>
-        <p>{{ tagOwner }}</p>
+    <div class="row justify-evenly content-between q-gutter-sm">
+        <data-card class="col-auto" v-for="(value, key) in information" :title="key" :info="value" />
     </div>
 </template>
 
