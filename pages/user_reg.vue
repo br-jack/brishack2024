@@ -1,4 +1,3 @@
-<!--USER USE ONLY-->
 <script setup>
 import { definePageMeta } from '#imports'
 definePageMeta({

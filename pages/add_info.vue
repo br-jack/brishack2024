@@ -1,4 +1,4 @@
-<!--USER AND INSTITUTION USE ONLY-->
+<!--USER USE ONLY-->
 
 <script setup>
 import { definePageMeta } from '#imports'
