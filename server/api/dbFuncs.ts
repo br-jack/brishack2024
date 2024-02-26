@@ -58,6 +58,7 @@ export const getUserInfo = async (username: string) => {
             medications: true,
         }
     })
+    return mainUserInfo
 }
 
 // UPDATE CivUsers SET Name = “${newName}”, Number = “${newNumber}”, InfoPublicallyAvailable = “${new InfoPublicallyAvailable}”, PasswordHash = “${newPasswordHash}”,  DateOfBirth = “${newDateOfBirth}”, BloodType = “${newBloodType]”, OrganDonor = “${newOrganDonor}” WHERE CivUsername == “${username}”
@@ -139,10 +140,7 @@ export const verifyCivUser = async (inputUsername: string, inputPassword: string
     if (user == null) {
         return false
     }
-    if (user.PasswordHash === await hash(inputPassword)) {
-        return true
-    }
-    return false
+    return await bcrypt.compare(inputPassword, user.PasswordHash)
 }
 
 // SELECT CivUsername FROM Tag WHERE TagID == “${tagID}”
@@ -167,7 +165,7 @@ export const hasInfoPublicallyAvailable = async (username: string) => {
     return user.InfoPublicallyAvailable
 }
 // SELECT MedUsername FROM MedUsers WHERE MedUsername == “${username}”
-export const verifyMedUser = async (username: string) => {
+export const verifyMedUser = async (username: string, password: string) => {
     const user = await prisma.medUsers.findUnique({
         where: {
             MedUsername: username
@@ -176,7 +174,19 @@ export const verifyMedUser = async (username: string) => {
     if (user == null) {
         return false
     }
-    return true
+    return await bcrypt.compare(password, user.PasswordHash)
+}
+
+export const verifyIntUser = async (username: string, password: string) => {
+    const user = await prisma.institution.findUnique({
+        where: {
+            InstUsername: username
+        }
+    })
+    if (user == null) {
+        return false
+    }
+    return await bcrypt.compare(password, user.PasswordHash)
 }
 
 export const canAccessUserdata = async (requester: string, target: string) => {

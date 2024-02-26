@@ -12,8 +12,14 @@ const extractTokenV2 = (authHeader: string) => {
   const [, token] = authHeader.split("=")
   return token
 }
-
-export const ensureAuth = (event) => {
+interface Session {
+  username: string,
+  type: string,
+  scope: string[],
+  iat: number,
+  exp: number
+}
+export const ensureAuth = (event): Session => {
   const authHeaderValue = getRequestHeader(event, 'authorization')
   const authHeaderValueCookie = getRequestHeader(event, 'cookie')
   if (typeof authHeaderValue === 'undefined' && typeof authHeaderValueCookie === 'undefined') {
@@ -26,6 +32,7 @@ export const ensureAuth = (event) => {
 
   const extractedToken = authHeaderValue ? extractToken(authHeaderValue) : extractTokenV2(authHeaderValueCookie)
   try {
+    // @ts-ignore
     return jwt.verify(extractedToken, SECRET)
   } catch (error) {
     console.log(error)

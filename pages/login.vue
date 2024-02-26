@@ -10,7 +10,7 @@ definePageMeta({
 const { signIn, token, data, status, lastRefreshedAt, signOut } = useAuth()
 const username = ref('')
 const password = ref('')
-const type = ref('')
+const type = ref('CIV')
 const errorVal = ref('')
 
 async function signInWithCredentials() {
@@ -24,12 +24,6 @@ async function signInWithCredentials() {
   } catch (error) {
     errorVal.value = "Wrong username and password"
   }
-
-  console.log(await $fetch("/api/auth/session", {
-    headers: {
-      "Authorization": `${token.value}`
-    }
-  }))
 }
 </script>
 <template>
