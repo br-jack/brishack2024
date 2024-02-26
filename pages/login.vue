@@ -20,7 +20,8 @@ async function signInWithCredentials() {
     type: type.value // This needs to either be "CIV", "MED", "INT"
   }
   try {
-    await signIn(credentials, { redirect: false })
+    await signIn(credentials, { redirect: false, })
+    await navigateTo("/success_login")
   } catch (error) {
     errorVal.value = "Wrong username and password"
   }
@@ -39,9 +40,11 @@ async function signInWithCredentials() {
     <button @click="signInWithCredentials()">
       Login
     </button>
+
     <button @click="signOut({ redirect: false })">
       Signout
     </button>
+    
     <pre>Data: {{ data || 'no session data present, are you logged in?' }}</pre>
     <pre>Status: {{ status || 'no session data present, are you logged in?' }}</pre>
     <pre>Last refreshed at: {{ lastRefreshedAt || 'no refresh happened' }}</pre>
