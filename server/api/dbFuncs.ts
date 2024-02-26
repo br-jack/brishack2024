@@ -193,6 +193,24 @@ export const canAccessUserdata = async (requester: string, target: string) => {
     return hasInfoPublicallyAvailable(target) || verifyMedUser(requester)
 }
 
+export const civUsernameAvailable = async (username: string) => {
+    const user = await prisma.civUsers.findUnique({
+        where: {
+            CivUsername: username
+        }
+    })
+    return user == null
+}
+
+export const medUsernameAvailable = async (username: string) => {
+    const user = await prisma.medUsers.findUnique({
+        where: {
+            MedUsername: username
+        }
+    })
+    return user == null
+}
+
 const SALT_ROUNDS = 10
 const hash = async (password: string) => {
     let userHash = await bcrypt
