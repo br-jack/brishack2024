@@ -275,6 +275,20 @@ export const medUsernameAvailable = async (username: string) => {
   return user == null;
 };
 
+export const PPTHExists = async () => {
+  try {
+    const institution = await prisma.institution.findUnique({
+      where: {
+        InstUsername: "PPTH",
+      },
+    });
+    return institution != null;
+  } catch {
+    return false;
+  }
+  
+}
+
 const SALT_ROUNDS = 10;
 const hash = async (password: string) => {
   let userHash = await bcrypt.hash(password, SALT_ROUNDS);

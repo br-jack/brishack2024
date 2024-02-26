@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
-import { verifyCivUser, verifyIntUser, verifyMedUser } from "../dbFuncs";
+import { PPTHExists, verifyCivUser, verifyIntUser, verifyMedUser } from "../dbFuncs";
+import { databaseFillData } from "../dbDummyData";
 
 const refreshTokens: Record<number, Record<string, any>> = {};
 export const SECRET = "This is a super strong and powerful secret";
@@ -11,7 +12,11 @@ const UNATHORIZED_USER = createError({
 export default eventHandler(async (event) => {
   const result = await readBody(event);
   const { username, password, type } = result;
-
+  if (!PPTHExists()) {
+    await databaseFillData();
+  }
+  console.log(await PPTHExists())
+  console.log(await type)
   let validUser;
   if (type === "MED") {
     validUser = await verifyMedUser(username, password);
