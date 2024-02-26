@@ -1,6 +1,6 @@
 import { ensureAuth } from '../auth/session.get';
-import { databaseFillData } from '../dbDummyData';
-import { getUserInfo } from '../dbFuncs';
+import { databaseFillData } from '../dbStuff/dbDummyData';
+import { getUserInfo } from '../dbStuff/dbFuncs';
 
 export default defineEventHandler(async (event) => {
   const name = getRouterParam(event, "id");
