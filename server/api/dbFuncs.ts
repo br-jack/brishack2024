@@ -1,7 +1,8 @@
 import { PrismaClient } from '@prisma/client'
 import bcrypt from "bcrypt";
+import { databaseFillData } from './dbDummyData';
 
-const prisma = new PrismaClient()
+export const prisma = new PrismaClient()
 
 // INSERT INTO Institution VALUES (${username}, ${passwordHash}, ${name})
 export const insertInstitution = async (username: string, password: string, name: string) => {
@@ -151,7 +152,7 @@ export const getTagOwner = async (tagID: number) => {
             TagID: tagID
         }
     })
-    if (tag == null) {throw new Error('Tag not found')}
+    if (tag == null) { throw new Error('Tag not found') }
     return tag.CivUsername
 }
 
@@ -162,7 +163,7 @@ export const hasInfoPublicallyAvailable = async (username: string) => {
             CivUsername: username
         }
     })
-    if (user == null) {throw new Error('User not found')}
+    if (user == null) { throw new Error('User not found') }
     return user.InfoPublicallyAvailable
 }
 // SELECT MedUsername FROM MedUsers WHERE MedUsername == “${username}”
@@ -184,8 +185,8 @@ export const canAccessUserdata = async (requester: string, target: string) => {
 
 const SALT_ROUNDS = 10
 const hash = async (password: string) => {
-  let userHash = await bcrypt
-    .hash(password, SALT_ROUNDS)
+    let userHash = await bcrypt
+        .hash(password, SALT_ROUNDS)
 
     return userHash
 }

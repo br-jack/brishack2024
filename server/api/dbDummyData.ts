@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import { insertCivUser, insertInformation, insertInstitution, insertMedUser, insertMedication, registerTag } from './dbFuncs'
 
-const prisma = new PrismaClient()
+// const prisma = new PrismaClient()
 
 export const databaseFillData = async () => {
     // INSERT INTO Institution VALUES ('PPTH', 'Placeholder', 'Princeton-Plainsboro Teaching Hospital');
