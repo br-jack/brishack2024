@@ -4,8 +4,7 @@ INSERT INTO MedUsers VALUES ('Wilson', 'Placeholder', 'James Wilson', 'PPTH');
 INSERT INTO MedUsers VALUES ('Cuddy', 'Placeholder', 'Lisa Cuddy', 'PPTH');
 INSERT INTO CivUsers VALUES ('Kermit', 'Kermit the Frog', '01234 567 890', 'Placeholder', 1, 1955-05-09, 'O-', 1);
 INSERT INTO CivUsers VALUES ('Piggy', 'Miss Piggy', '01234 567 891', 'Placeholder', 0, 1974-05-09, 'A+', 0);
-INSERT INTO CivContact VALUES (1, 'Kermit', 'Friend', 'Fozzie Bear', '01234 567 890');
-INSERT INTO CivContact VALUES (2, 'Piggy', 'Friend', 'Fozzie Bear', '01234 567 890');
+
 INSERT INTO Information (CivUsername, InfoName, AddInfo) VALUES ('Kermit', 'Allergies', 'Peanuts');
 INSERT INTO Medication (CivUsername, MedicationName, DoseFrequency, AdditionalNotes) VALUES ('Kermit', 'Suspicious pills', 'Once a day', 'Take with food');
 INSERT INTO Information (CivUsername, InfoName, AddInfo) VALUES ('Kermit', 'Froggy', 'Yes');

@@ -8,7 +8,7 @@ export const insertInstitution = async (username: string, password: string, name
     await prisma.institution.create({
         data: {
             InstUsername: username,
-            PasswordHash: hash(password),
+            PasswordHash: await hash(password),
             Name: name,
         }
     })
@@ -19,7 +19,7 @@ export const insertMedUser = async (username: string, password: string, name: st
     await prisma.medUsers.create({
         data: {
             MedUsername: username,
-            PasswordHash: hash(password),
+            PasswordHash: await hash(password),
             Name: name,
             InstUsername: instUsername,
         }
@@ -33,7 +33,7 @@ export const insertCivUser = async (username: string, name: string, number: stri
             CivUsername: username,
             Name: name,
             Number: number,
-            PasswordHash: hash(password),
+            PasswordHash: await hash(password),
             InfoPublicallyAvailable: infoPublicallyAvailable,
             DateOfBirth: dateOfBirth,
             BloodType: bloodType,
@@ -69,7 +69,7 @@ export const updateUserProfile = async (username: string, newName: string, newNu
             Name: newName,
             Number: newNumber,
             InfoPublicallyAvailable: newInfoPublicallyAvailable,
-            PasswordHash: hash(newPassword),
+            PasswordHash: await hash(newPassword),
             DateOfBirth: newDateOfBirth,
             BloodType: newBloodType,
             OrganDonor: newOrganDonor,
@@ -138,7 +138,7 @@ export const verifyCivUser = async (inputUsername: string, inputPassword: string
     if (user == null) {
         return false
     }
-    if (user.PasswordHash === hash(inputPassword)) {
+    if (user.PasswordHash === await hash(inputPassword)) {
         return true
     }
     return false
@@ -184,12 +184,8 @@ export const canAccessUserdata = async (requester: string, target: string) => {
 
 const SALT_ROUNDS = 10
 const hash = async (password: string) => {
-    let userHash;
-  bcrypt
+  let userHash = await bcrypt
     .hash(password, SALT_ROUNDS)
-    .then(hash => {
-      userHash = hash
-    })
-    .catch(err => console.error(err.message))
+
     return userHash
 }
