@@ -1,4 +1,4 @@
-import { insertCivUser } from "../dbFuncs";
+import { civUsernameAvailable, insertCivUser } from "../dbFuncs";
 
 export default eventHandler(async (event) => {
   interface bodyData {
@@ -11,7 +11,11 @@ export default eventHandler(async (event) => {
     bloodType: string,
     organDonor: boolean
   }
-  const result: bodyData = await readBody(event)
+  const r: bodyData = await readBody(event)
 
-  // await insertCivUser();
+  if (!await civUsernameAvailable(r.username)) {
+    throw createError({ status: 409, statusMessage: 'User Exists' })
+  }
+
+  await insertCivUser(r.username, r.name, r.phoneNumber, r.password, r.infoPublic, new Date(r.dateOfBirth), r.bloodType, r.organDonor);
 })

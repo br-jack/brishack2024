@@ -14,7 +14,7 @@ const extractTokenV2 = (authHeader: string) => {
 }
 interface Session {
   username: string,
-  type: string,
+  type: "CIV" | "MED" | "INT",
   scope: string[],
   iat: number,
   exp: number
