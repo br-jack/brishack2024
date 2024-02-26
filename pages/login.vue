@@ -1,7 +1,7 @@
 <!--USED BY ALL-->
 <script setup lang="ts">
 
-const saveStorage = function (key, data) {
+const saveStorage = function (key: any, data: any) {
   window.localStorage.setItem(key, JSON.stringify(data));
 };
 const state = useAuthState()
