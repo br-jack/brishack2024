@@ -38,7 +38,9 @@ const { data } = await useFetch('/api/users/hello')
 
 //     return formatted
 // })
+await navigateTo("/success_login")
 </script>
+  
 
 <template>
     <div class="row justify-evenly content-between q-gutter-sm">
