@@ -42,14 +42,36 @@ await fetchInfo()
 </script>
 
 <template>
-  <div>
-    <h1>Add or Edit Tags</h1>
-
-    <input v-model="name" placeholder="Name" type="text">
-    <pre>{{ info }}</pre>
-
-    <button @click="attemptChange()">
-      Submit
-    </button>
+  <div class="center">
+    <h3>Add or Edit Tags</h3>
+    <div class="parent center">
+      <div class="child center">
+        <label for="name">Enter Tag: </label>
+        <input v-model="name" placeholder="Name" type="text">
+      </div>
+      <div class="child center">
+        <button @click="attemptChange()">
+          Submit
+        </button>
+      </div>
+    </div>
   </div>
 </template>
+
+<style scoped>
+.parent {
+display: grid; 
+  grid-template-columns: 3fr 1fr; 
+  grid-gap: 20px; 
+  width: 50%; 
+  text-align: center;
+}
+.child {
+margin: auto;
+}
+.center {
+  margin: auto;
+  width: 90%;
+  text-align: center;
+}
+</style>
