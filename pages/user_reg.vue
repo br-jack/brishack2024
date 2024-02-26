@@ -1,19 +1,12 @@
 <script setup>
-import { definePageMeta } from '#imports'
-definePageMeta({
-  auth: {
-    unauthenticatedOnly: true,
-    navigateAuthenticatedTo: '/',
-  }
-})
 const username = ref('')
 const name = ref('')
 const password = ref('')
 const permissions = ref('')
 const phone = ref('')
-const dob = ref('')
-const blood = ref('')
-const donor = ref('')
+const dob = ref()
+const blood = ref('unknown')
+const donor = ref(false)
 
 async function attemptRegister() {
 
@@ -24,10 +17,11 @@ async function attemptRegister() {
     password: password.value,
     permissions: permissions.value,
     phone: phone.value,
-    dob: dob.value,
+    dateOfBirth: dob.value,
     blood: blood.value,
     donor: donor.value
   }
+  console.log(regInfo)
 
   //send data off
   try {
@@ -35,6 +29,7 @@ async function attemptRegister() {
       method: 'POST',
       body: regInfo
     })
+    await navigateTo("/login")
   }
 
   catch (error) {
@@ -49,22 +44,25 @@ async function attemptRegister() {
   <div>
     <h1>Register a user</h1>
 
+    <label for="username"> Username: </label>
     <input v-model="username" type="text" />
-    <label for="username"> Username: </label><br>
+    <br />
 
+    <label for="password"> Password: </label>
     <input v-model="password" type="password" />
-    <label for="password"> Password: </label><br>
+    <br />
 
+    <label for="name"> Name: </label>
     <input v-model="name" type="name" />
-    <label for="name"> Name: </label><br>
+    <br />
 
+    <label for="phone"> Phone: </label>
     <input v-model="phone" type="phone" />
-    <label for="phone"> Phone: </label><br>
+    <br />
 
     <label for="blood">Blood Type:</label>
-
-    <select name="blood" id="blood">
-      <option value="unknown">N/A</option>
+    <select name="blood" v-model="blood">
+      <option selected value="unknown">N/A</option>
       <option value="a+">A+</option>
       <option value="a-">A-</option>
       <option value="b+">B+</option>
@@ -74,17 +72,19 @@ async function attemptRegister() {
       <option value="o+">O+</option>
       <option value="o-">O-</option>
     </select>
+    <br />
 
+    <label for="dob"> Date of Birth: </label>
     <input v-model="dob" type="date" />
-    <label for="dob"> Date of Birth: </label><br>
+    <br />
 
-    <input type="checkbox" id="donor" name="donor" value="false">
-    <label for="donor"> Is the user a donor?</label><br>
+    <label for="donor"> Is the user a donor?</label>
+    <input type="checkbox" v-model="donor" name="donor" value="false">
+    <br />
 
-    <input type="checkbox" id="permissions" name="permissions" value="false">
-    <label for="permissions"> Allow non medical users to access name and phone number?</label><br>
-
-
+    <label for="permissions"> Allow non medical users to access name and phone number?</label>
+    <input type="checkbox" v-model="permissions" name="permissions" value="false">
+    <br />
 
     <button @click="attemptRegister()">
       User Registration

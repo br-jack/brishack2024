@@ -7,7 +7,7 @@ export default eventHandler(async (event) => {
     phoneNumber: string;
     password: string;
     infoPublic: boolean;
-    dateOfBirth: number;
+    dateOfBirth: string;
     bloodType: string;
     organDonor: boolean;
   }

@@ -12,6 +12,9 @@ const clearStorage = function (key: any) {
 <template>
   <nav class="q-pa-md q-gutter-sm">
     <div v-if="status === 'unauthenticated'" class="q-gutter-sm">
+      <NuxtLink to='/user_reg'>
+        <q-btn color="white" text-color="black" label="Register" />
+      </NuxtLink>
       <NuxtLink to='/login'>
         <q-btn color="white" text-color="black" label="Login" />
       </NuxtLink>
