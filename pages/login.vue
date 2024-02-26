@@ -31,7 +31,11 @@ async function signInWithCredentials() {
     <h1>Enter your credentials to continue</h1>
     <input v-model="username" type="text" />
     <input v-model="password" type="password" />
-    <!-- DANIIL ADD A DROPDOWN HERE <3  -->
+    <select name="type" id="type">
+        <option value="CIV">Normal User</option>
+        <option value="MED">Medical User</option>
+        <option value="INT">Institution</option>
+      </select> 
     <button @click="signInWithCredentials()">
       Login
     </button>
