@@ -43,8 +43,8 @@ async function attemptInput() {
       
       <NuxtLink to="/redir_info">Back</NuxtLink>
       
-      <input v-model="infoName" type="text" />
-      <input v-model="newInfo" type="text" />
+      <input v-model="infoName" placeholder="Information name" type="text" />
+      <input v-model="newInfo" placeholder="Value" type="text" />
 
       <button @click="attemptInput()">
       Add
