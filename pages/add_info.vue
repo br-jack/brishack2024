@@ -35,23 +35,43 @@ async function attemptInput() {
     }
 }
 
-</script>medication
+</script>
 
 <template>
-    <div>
-      <h1>Add information</h1>
-      
-      <NuxtLink to="/redir_info">Back</NuxtLink>
-      
-      <input v-model="infoName" type="text" />
-      <input v-model="newInfo" type="text" />
+  <div class="center">
+    <h3>Add Medical Information</h3>
+    <NuxtLink to="/redir_info">Back to the Info screen</NuxtLink>
+    <div class="parent center">
+      <div class="child center">
+        <label for="infoName">Brief Description: </label>
+        <input v-model="infoName" type="text" />
+      </div>
+      <div class="child center">
+        <label for="newInfo">Extra notes, information: </label>
+        <textarea id="newInfo" type="text" cols="40" rows="8"/>
+      </div>
 
       <button @click="attemptInput()">
       Add
-    </button>
-
-      <pre>Data: {{ data || 'no session data present, are you logged in?' }}</pre>
-      <pre>Last refreshed at: {{ lastRefreshedAt || 'no refresh happened' }}</pre>
-      <pre>JWT token: {{ token || 'no token present, are you logged in?' }}</pre>
+      </button>
     </div>
-  </template>
+  </div>
+</template>
+
+<style scoped>
+.parent {
+display: grid; 
+  grid-template-columns: 3fr 1fr; 
+  grid-gap: 20px; 
+  width: 50%; 
+  text-align: center;
+}
+.child {
+margin: auto;
+}
+.center {
+  margin: auto;
+  width: 90%;
+  text-align: center;
+}
+</style>
