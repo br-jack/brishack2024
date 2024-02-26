@@ -67,6 +67,7 @@ async function attemptRegister() {
       <label for="blood">Blood Type:</label>
 
       <select name="blood" id="blood">
+        <option value="unknown">N/A</option>
         <option value="a+">A+</option>
         <option value="a-">A-</option>
         <option value="b+">B+</option>
@@ -85,6 +86,8 @@ async function attemptRegister() {
 
       <input type="checkbox" id="permissions" name="permissions" value="false">
       <label for="permissions"> Allow non medical users to access name and phone number?</label><br>
+
+      
 
       <button @click="attemptRegister()">
         User Registration
