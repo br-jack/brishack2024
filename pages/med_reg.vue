@@ -34,15 +34,22 @@ async function attemptRegister() {
 </script>
 
 <template>
-  <div>
-    <h1>Register a medical user</h1>
-
-      <input v-model="username" type="text" />
-      <label for="username"> Username: </label><br>
-      <input v-model="password" type="password" />
-      <label for="password"> Password: </label><br>
-      <input v-model="name" type="text" />
-      <label for="name"> Name: </label><br>
+  <div class="centre">
+    <h3>Register a medical user</h3>
+      <div class="parent centre">
+        <div class="child">
+          <label for="username"> Username: </label><br>
+          <input v-model="username" type="text" />
+        </div>
+        <div class="child">
+          <label for="password"> Password: </label><br>
+          <input v-model="password" type="password" />
+        </div>
+        <div class="child">
+          <label for="name"> Name: </label><br>
+          <input v-model="name" type="text" />
+        </div>
+      </div>
 
     <button @click="attemptRegister()">
       Medical User Registration
@@ -50,3 +57,16 @@ async function attemptRegister() {
 
   </div>
 </template>
+
+<style scoped>
+.parent {
+  display: grid; 
+    grid-template-columns: 3fr 1fr; 
+    grid-gap: 20px; 
+    width: 50%; 
+    text-align: center;
+}
+.child {
+  margin: auto;
+}
+</style>
