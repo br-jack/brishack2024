@@ -1,10 +1,6 @@
-import { ensureAuth } from '../auth/session.get';
-import { getTagOwner } from '../dbFuncs';
+import { } from '../dbFuncs';
+import { ensureAuth } from "../auth/session.get"
 
 export default defineEventHandler(async (event) => {
-  interface bodyData {
-    tagId: string
-  }
-
-  return await getTagOwner((await readBody(event)).tagId)
+  const session = ensureAuth(event)
 })

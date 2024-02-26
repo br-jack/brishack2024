@@ -8,6 +8,6 @@ export default eventHandler(async (event) => {
   const result: bodyData = await readBody(event)
   const session = ensureAuth(event)
 
-  registerTag
+  // registerTag
 
 })
