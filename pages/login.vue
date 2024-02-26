@@ -60,13 +60,13 @@ async function signInWithCredentials() {
         </button>
       </div>
     </div>
-    <div>
+    <!-- <div>
       <pre>Data: {{ data || 'no session data present, are you logged in?' }}</pre>
       <pre>Status: {{ status || 'no session data present, are you logged in?' }}</pre>
       <pre>Last refreshed at: {{ lastRefreshedAt || 'no refresh happened' }}</pre>
       <pre>JWT token: {{ token || 'no token present, are you logged in?' }}</pre>
       <pre>{{ errorVal }}</pre>
-    </div>
+    </div> -->
   </div>
 </template>
 

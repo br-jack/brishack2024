@@ -72,18 +72,7 @@ async function attemptUserProfileUpdate() {
                     <td>{{ information.OrganDonor ? "Yes" : "No" }}</td>
                     <td>{{ information.InfoPublicallyAvailable ? "Yes" : "No" }}</td>
                 </tr>
-                <tr>
-                    <td> <input v-model="name" type="text" /> </td>
-                    <td> <input v-model="phoneNumber" type="text" /> </td>
-                    <td> <input v-model="dateOfBirth" type="date" /> </td>
-                    <td> <input v-model="bloodType" type="text" /> </td>
-                    <td> <input v-model="organDonor" type="text" /> </td>
-                    <td> <input v-model="infoPublic" type="text" /> </td>
-                </tr>
             </v-table>
-            <button @click="attemptUserProfileUpdate()">
-            Update User Profile
-            </button>
         </div>
         <br>
         <div class="row justify-evenly content-between q-gutter-sm">
