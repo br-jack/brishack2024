@@ -23,9 +23,9 @@ interface medication {
 <template>
   <div>
     <h1>User information</h1>
-
+    <div class="center">
     <ClientOnly>
-      <div class="row justify-evenly content-between q-gutter-sm">
+      <div class="parent center row justify-evenly content-between q-gutter-sm">
         <NuxtLink to="/add_meds">
           <q-btn color="blue" text-color="white" label="Add Medication" />
         </NuxtLink>
@@ -52,7 +52,7 @@ interface medication {
         </v-table>
       </div>
       <br>
-      <div class="row justify-evenly content-between q-gutter-sm">
+      <div class="parent center row justify-evenly content-between q-gutter-sm">
         <v-table :data="information.medications">
           <thead slot="head">
             <th>Medication</th>
@@ -69,7 +69,7 @@ interface medication {
         </v-table>
       </div>
       <br>
-      <div class="row justify-evenly content-between q-gutter-sm">
+      <div class="parent center row justify-evenly content-between q-gutter-sm">
         <v-table :data="information.information">
           <thead slot="head">
             <th>Information</th>
@@ -85,5 +85,25 @@ interface medication {
       </div>
 
     </ClientOnly>
+    </div>
   </div>
 </template>
+
+<style scoped>
+.parent {
+  display: grid; 
+    grid-template-columns: 3fr 1fr; 
+    grid-gap: 20px; 
+    width: 50%; 
+    text-align: center;
+}
+.child {
+  margin: auto;
+}
+
+.center {
+  margin: auto;
+  width: 90%;
+  text-align: center;
+}
+</style>

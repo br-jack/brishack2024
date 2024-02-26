@@ -34,7 +34,7 @@ async function attemptRegister() {
 </script>
 
 <template>
-  <div class="centre">
+  <div class="center">
     <h3>Register a medical user</h3>
       <div class="parent centre">
         <div class="child">
@@ -68,5 +68,11 @@ async function attemptRegister() {
 }
 .child {
   margin: auto;
+}
+
+.center {
+  margin: auto;
+  width: 90%;
+  text-align: center;
 }
 </style>
