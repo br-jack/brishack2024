@@ -9,32 +9,43 @@ definePageMeta({
   }
 })
 const { signIn, token, data, status, lastRefreshedAt } = useAuth()
+if (!token.value) {
+  await navigateTo("/login")
+}
+const infoName = ref('')
+const newInfo = ref('')
 
 async function attemptInput() {
-
-    //gather data
-    const medInfo = {
-   
-    }
-    //send data off (unchecked)
     try {
-    //do something
+    await $fetch('/api/info/med', {
+
+      method: 'POST',
+      body: {
+        infoName: infoName.value,
+        newInfo: newInfo.value,
+      },
+      headers: {
+        "Authorization": token
+      }
+    })
+
     } 
     catch (error) {
     console.error(error)
     }
 }
 
-</script>
+</script>medication
 
 <template>
     <div>
-      <h1>Add section of information</h1>
+      <h1>Add information</h1>
       
       <NuxtLink to="/redir_info">Back</NuxtLink>
       
-      
-      
+      <input v-model="infoName" type="text" />
+      <input v-model="newInfo" type="text" />
+
       <pre>Data: {{ data || 'no session data present, are you logged in?' }}</pre>
       <pre>Last refreshed at: {{ lastRefreshedAt || 'no refresh happened' }}</pre>
       <pre>JWT token: {{ token || 'no token present, are you logged in?' }}</pre>

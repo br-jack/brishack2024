@@ -9,16 +9,28 @@ definePageMeta({
   }
 })
 const { signIn, token, data, status, lastRefreshedAt } = useAuth()
+if (!token.value) {
+  await navigateTo("/login")
+}
+const medicationName = ref('')
+const doseFrequency = ref('')
+const additionalInfo = ref('')
 
 async function attemptInput() {
-
-    //gather data
-    const medInfo = {
-   
-    }
-    //send data off (unchecked)
     try {
-    //do something
+    await $fetch('/api/info/med', {
+
+      method: 'POST',
+      body: {
+        medicationName: medicationName.value,
+        doseFrequency: doseFrequency.value,
+        additionalInfo: additionalInfo.value
+      },
+      headers: {
+        "Authorization": token
+      }
+    })
+
     } 
     catch (error) {
     console.error(error)
@@ -33,7 +45,9 @@ async function attemptInput() {
       
       <NuxtLink to="/redir_info">Back</NuxtLink>
       
-      
+      <input v-model="medicationName" type="text" />
+      <input v-model="doseFrequency" type="text" />
+      <input v-model="additionalInfo" type="text" />
 
       <pre>Data: {{ data || 'no session data present, are you logged in?' }}</pre>
       <pre>Last refreshed at: {{ lastRefreshedAt || 'no refresh happened' }}</pre>
