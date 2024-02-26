@@ -19,7 +19,6 @@ const additionalInfo = ref('')
 async function attemptInput() {
   try {
     await $fetch('/api/info/med', {
-
       method: 'POST',
       body: {
         medicationName: medicationName.value,
@@ -27,7 +26,7 @@ async function attemptInput() {
         additionalInfo: additionalInfo.value
       },
       headers: {
-        "Authorization": token
+        "Authorization": token.value
       }
     })
 

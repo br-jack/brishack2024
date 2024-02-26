@@ -25,7 +25,7 @@ async function attemptInput() {
         newInfo: newInfo.value,
       },
       headers: {
-        "Authorization": token
+        "Authorization": token.value
       }
     })
 
