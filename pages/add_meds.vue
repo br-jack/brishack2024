@@ -10,13 +10,12 @@ definePageMeta({
 })
 const { signIn, token, data, status, lastRefreshedAt } = useAuth()
 
-async function attemptRegister() {
+async function attemptInput() {
 
     //gather data
     const medInfo = {
    
     }
-
     //send data off (unchecked)
     try {
     //do something
@@ -24,15 +23,18 @@ async function attemptRegister() {
     catch (error) {
     console.error(error)
     }
-
 }
 
 </script>
 
 <template>
     <div>
-      <h1>Edit user information</h1>
-  
+      <h1>Add medication</h1>
+      
+      <NuxtLink to="/redir_info">Back</NuxtLink>
+      
+      
+
       <pre>Data: {{ data || 'no session data present, are you logged in?' }}</pre>
       <pre>Last refreshed at: {{ lastRefreshedAt || 'no refresh happened' }}</pre>
       <pre>JWT token: {{ token || 'no token present, are you logged in?' }}</pre>

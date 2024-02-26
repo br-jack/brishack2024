@@ -37,12 +37,12 @@ async function attemptRegister() {
   <div>
     <h1>Register a medical user</h1>
 
-    <input v-model="username" type="text" />
-    <label for="username"> Username: </label><br>
-    <input v-model="password" type="text" />
-    <label for="password"> Password: </label><br>
-    <input v-model="name" type="text" />
-    <label for="name"> Name: </label><br>
+      <input v-model="username" type="text" />
+      <label for="username"> Username: </label><br>
+      <input v-model="password" type="password" />
+      <label for="password"> Password: </label><br>
+      <input v-model="name" type="text" />
+      <label for="name"> Name: </label><br>
 
     <button @click="attemptRegister()">
       Medical User Registration
