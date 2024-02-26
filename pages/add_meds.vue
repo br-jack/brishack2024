@@ -49,6 +49,10 @@ async function attemptInput() {
       <input v-model="doseFrequency" type="text" />
       <input v-model="additionalInfo" type="text" />
 
+      <button @click="attemptInput()">
+      Add
+    </button>
+
       <pre>Data: {{ data || 'no session data present, are you logged in?' }}</pre>
       <pre>Last refreshed at: {{ lastRefreshedAt || 'no refresh happened' }}</pre>
       <pre>JWT token: {{ token || 'no token present, are you logged in?' }}</pre>

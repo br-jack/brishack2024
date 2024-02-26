@@ -46,6 +46,10 @@ async function attemptInput() {
       <input v-model="infoName" type="text" />
       <input v-model="newInfo" type="text" />
 
+      <button @click="attemptInput()">
+      Add
+    </button>
+
       <pre>Data: {{ data || 'no session data present, are you logged in?' }}</pre>
       <pre>Last refreshed at: {{ lastRefreshedAt || 'no refresh happened' }}</pre>
       <pre>JWT token: {{ token || 'no token present, are you logged in?' }}</pre>
