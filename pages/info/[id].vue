@@ -2,9 +2,7 @@
 import SmartTable from 'vuejs-smart-table'
 Vue.use(SmartTable)
 
-const { token, getSession } = useAuth()
-await getSession()
-console.log(token.value)
+const { token } = useAuth()
 const route = useRoute()
 const tagID = route.params.id
 const tagOwner = await $fetch(`/api/info/tag/${tagID}`, {

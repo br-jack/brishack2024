@@ -7,7 +7,6 @@ export default defineNuxtConfig({
   ],
   quasar: { /* */ },
   auth: {
-    globalAppMiddleware: true,
     baseURL: '/api/auth',
     provider: {
       type: 'local',
