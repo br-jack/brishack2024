@@ -35,12 +35,17 @@ async function signInWithCredentials() {
 </script>
 <template>
   <div>
-    <h1>Enter your credentials to continue</h1>
+    <h3>Enter your Account Details to continue</h3>
     <div>
-      <input v-model="username" type="text" />
+      <label for="username">Enter Username: </label>
+      <input v-model="username" type="text"/>
+    </div>
+    <div>
+      <label for="password">Enter Password: </label>
       <input v-model="password" type="password" />
     </div>
     <div>
+      <label for="type">Select User Type: </label>
       <select name="type" v-model="type">
         <option selected value="CIV">Normal User</option>
         <option value="MED">Medical User</option>
@@ -51,10 +56,8 @@ async function signInWithCredentials() {
       <button @click="signInWithCredentials()">
         Login
       </button>
-
     </div>
     <div>
-
       <pre>Data: {{ data || 'no session data present, are you logged in?' }}</pre>
       <pre>Status: {{ status || 'no session data present, are you logged in?' }}</pre>
       <pre>Last refreshed at: {{ lastRefreshedAt || 'no refresh happened' }}</pre>
