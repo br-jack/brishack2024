@@ -13,6 +13,41 @@ const information = await $fetch(`/api/users/${tagOwner}`, {
         "Authorization": token
     }
 })
+
+const name = ref('')
+const username = ref('')
+const phoneNumber = ref('')
+const password = ref('')
+const infoPublic = ref('')
+const dateOfBirth = ref('')
+const bloodType = ref('')
+const organDonor = ref('')
+
+async function attemptUserProfileUpdate() {
+    try {
+    await $fetch('/api/info/userProfile', {
+
+      method: 'POST',
+      body: {
+        name: name.value == "" ? information.name : name.value,
+        username: information.username,
+        phoneNumber: phoneNumber.value == "" ? information.name : phoneNumber.value,
+        password: information.password,
+        infoPublic: infoPublic.value == "" ? information.infoPublic : infoPublic.value,
+        dateOfBirth: dateOfBirth.value == "" ? information.dateOfBirth : dateOfBirth.value,
+        bloodType: bloodType.value == "" ? information.bloodType : bloodType.value,
+        organDonor: organDonor.value == "" ? information.organDonor : organDonor.value,
+      },
+      headers: {
+        "Authorization": token
+      }
+    })
+
+    } 
+    catch (error) {
+    console.error(error)
+    }
+}
 </script>
 
 
@@ -37,7 +72,18 @@ const information = await $fetch(`/api/users/${tagOwner}`, {
                     <td>{{ information.OrganDonor ? "Yes" : "No" }}</td>
                     <td>{{ information.InfoPublicallyAvailable ? "Yes" : "No" }}</td>
                 </tr>
+                <tr>
+                    <td> <input v-model="name" type="text" /> </td>
+                    <td> <input v-model="phoneNumber" type="text" /> </td>
+                    <td> <input v-model="dateOfBirth" type="date" /> </td>
+                    <td> <input v-model="bloodType" type="text" /> </td>
+                    <td> <input v-model="organDonor" type="text" /> </td>
+                    <td> <input v-model="infoPublic" type="text" /> </td>
+                </tr>
             </v-table>
+            <button @click="attemptUserProfileUpdate()">
+            Update User Profile
+            </button>
         </div>
         <br>
         <div class="row justify-evenly content-between q-gutter-sm">

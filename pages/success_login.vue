@@ -14,7 +14,7 @@ if (!token.value) {
 
 <template>
     <div>
-      <h2>You have logged in successfully!</h2>
-      <h4>Use the navigation bar above to continue.</h4>
+      <h3>You have logged in successfully!</h3>
+      <h5>Use the navigation bar above to continue.</h5>
     </div>
 </template>

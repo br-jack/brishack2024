@@ -12,9 +12,7 @@ const UNATHORIZED_USER = createError({
 export default eventHandler(async (event) => {
   const result = await readBody(event);
   const { username, password, type } = result;
-  if (!await PPTHExists()) {
-    await databaseFillData();
-  }
+  // await databaseFillData();
   let validUser;
   if (type === "MED") {
     validUser = await verifyMedUser(username, password);

@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
+
 import { databaseFillData } from "./dbDummyData";
 
 export const prisma = new PrismaClient();
@@ -291,7 +292,6 @@ export const PPTHExists = async () => {
 
 const SALT_ROUNDS = 10;
 const hash = async (password: string) => {
-  let userHash = await bcrypt.hash(password, SALT_ROUNDS);
-
-  return userHash;
+  const salt = await bcrypt.genSalt(10);
+  return bcrypt.hash(password, salt);
 };
