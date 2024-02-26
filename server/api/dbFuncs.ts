@@ -154,6 +154,16 @@ export const getTagOwner = async (tagID: number) => {
     return tag.CivUsername
 }
 
+export const getOwnerTag = async (username: string) => {
+    const tags = await prisma.tag.findMany({
+        where: {
+            CivUsername: username
+        }
+    })
+    if (tags == null) { return null }
+    return tags
+}
+
 // SELECT InfoPublicallyAvailable FROM CivUsers WHERE CivUsername == “${username}”
 export const hasInfoPublicallyAvailable = async (username: string) => {
     const user = await prisma.civUsers.findUnique({
