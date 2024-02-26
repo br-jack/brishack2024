@@ -23,7 +23,7 @@ async function signInWithCredentials() {
     await signIn(credentials, { redirect: false, })
     await navigateTo("/success_login")
   } catch (error) {
-    errorVal.value = "Wrong username and password"
+    errorVal.value = "Wrong username or password"
   }
 }
 </script>
