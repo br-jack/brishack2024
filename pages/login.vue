@@ -32,9 +32,9 @@ async function signInWithCredentials() {
     <input v-model="username" type="text" />
     <input v-model="password" type="password" />
     <select name="type" id="type">
-        <option value="civ">Normal User</option>
-        <option value="med">Medical User</option>
-        <option value="inst">Institution</option>
+        <option value="CIV">Normal User</option>
+        <option value="MED">Medical User</option>
+        <option value="INT">Institution</option>
       </select> 
     <button @click="signInWithCredentials()">
       Login
