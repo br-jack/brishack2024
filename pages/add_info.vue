@@ -16,7 +16,7 @@ const infoName = ref('')
 const newInfo = ref('')
 
 async function attemptInput() {
-    try {
+  try {
     await $fetch('/api/info/med', {
 
       method: 'POST',
@@ -29,10 +29,10 @@ async function attemptInput() {
       }
     })
 
-    } 
-    catch (error) {
+  }
+  catch (error) {
     console.error(error)
-    }
+  }
 }
 
 </script>
@@ -48,23 +48,28 @@ async function attemptInput() {
       </div>
       <div class="child center">
         <label for="newInfo">Extra notes, information: </label>
-        <textarea id="newInfo" type="text" cols="40" rows="8"/>
+        <textarea id="newInfo" type="text" cols="40" rows="8" />
       </div>
+      <button @click="attemptInput()">
+        Add
+      </button>
     </div>
   </div>
 </template>
 
 <style scoped>
 .parent {
-display: grid; 
-  grid-template-columns: 3fr 1fr; 
-  grid-gap: 20px; 
-  width: 50%; 
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 20px;
+  width: 50%;
   text-align: center;
 }
+
 .child {
-margin: auto;
+  margin: auto;
 }
+
 .center {
   margin: auto;
   width: 90%;

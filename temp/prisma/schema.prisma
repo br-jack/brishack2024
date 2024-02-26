@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model CivUsers {
+  CivUsername             String    @id
+  Name                    String
+  Number                  String?
+  PasswordHash            String
+  InfoPublicallyAvailable Boolean   @default(false)
+  DateOfBirth             DateTime?
+  BloodType               String?
+  OrganDonor              Boolean?
+  tags                    Tag[]
+  contacts                CivContact[]
+  information             Information[]
+  medications             Medication[]
+}
+
+model Tag {
+  TagID       Int      @id @default(autoincrement())
+  CivUsername String
+  Name        String
+  civUsers    CivUsers @relation(fields: [CivUsername], references: [CivUsername])
+}
+
+model CivContact {
+  CivContactID Int      @id @default(autoincrement())
+  CivUsername  String
+  RelationToCiv String?
+  Name         String
+  Number       String?
+  civUsers     CivUsers @relation(fields: [CivUsername], references: [CivUsername])
+}
+
+model Information {
+  InformationID Int      @id @default(autoincrement())
+  CivUsername   String
+  InfoName      String
+  AddInfo       String?
+  civUsers      CivUsers @relation(fields: [CivUsername], references: [CivUsername])
+}
+
+model Medication {
+  MedicationID    Int      @id @default(autoincrement())
+  CivUsername     String
+  MedicationName  String
+  DoseFrequency   String
+  AdditionalNotes String?
+  civUsers        CivUsers @relation(fields: [CivUsername], references: [CivUsername])
+}
+
+model Institution {
+  InstUsername String @id
+  PasswordHash String
+  Name         String
+  medUsers     MedUsers[]
+}
+
+model MedUsers {
+  MedUsername  String @id
+  PasswordHash String
+  Name         String
+  InstUsername String
+  institution  Institution @relation(fields: [InstUsername], references: [InstUsername])
+}
