@@ -17,13 +17,16 @@ const clearStorage = function (key: any) {
       </NuxtLink>
     </div>
     <div v-if="status === 'authenticated'" class="q-gutter-sm">
-      <NuxtLink to='/add_info'>
+      <NuxtLink v-if="data?.type === 'CIV'" to='/redir_info'>
+        <q-btn color="white" text-color="black" label="Main info" />
+      </NuxtLink>
+      <NuxtLink v-if="data?.type === 'CIV'" to='/add_info'>
         <q-btn color="white" text-color="black" label="Add Info" />
       </NuxtLink>
-      <NuxtLink to='/add_meds'>
+      <NuxtLink v-if="data?.type === 'CIV'" to='/add_meds'>
         <q-btn color="white" text-color="black" label="Add Meds" />
       </NuxtLink>
-      <NuxtLink to='/edit_tags'>
+      <NuxtLink v-if="data?.type === 'CIV'" to='/edit_tags'>
         <q-btn color="white" text-color="black" label="Edit Tags" />
       </NuxtLink>
       <NuxtLink v-if="data?.type === 'INT'" to='/med_reg'>
