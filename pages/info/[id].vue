@@ -1,5 +1,7 @@
 <script setup>
-const { token } = useAuth()
+const { token, getSession } = useAuth()
+await getSession()
+console.log(token.value)
 const route = useRoute()
 const tagID = route.params.id
 const tagOwner = await $fetch(`/api/info/tag/${tagID}`, {

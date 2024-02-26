@@ -1,5 +1,10 @@
 <!--USED BY ALL-->
 <script setup lang="ts">
+
+const saveStorage = function (key, data) {
+  window.localStorage.setItem(key, JSON.stringify(data));
+};
+const state = useAuthState()
 import { definePageMeta } from '#imports'
 definePageMeta({
   auth: {
@@ -21,6 +26,7 @@ async function signInWithCredentials() {
   }
   try {
     await signIn(credentials, { redirect: false, })
+    saveStorage("token", state.rawToken.value)
     await navigateTo("/success_login")
   } catch (error) {
     errorVal.value = "Wrong username or password"
@@ -45,14 +51,11 @@ async function signInWithCredentials() {
       <button @click="signInWithCredentials()">
         Login
       </button>
-  
-    <button @click="signOut({ redirect: false })">
-        Signout
-      </button>
+
     </div>
     <div>
-      
-    <pre>Data: {{ data || 'no session data present, are you logged in?' }}</pre>
+
+      <pre>Data: {{ data || 'no session data present, are you logged in?' }}</pre>
       <pre>Status: {{ status || 'no session data present, are you logged in?' }}</pre>
       <pre>Last refreshed at: {{ lastRefreshedAt || 'no refresh happened' }}</pre>
       <pre>JWT token: {{ token || 'no token present, are you logged in?' }}</pre>

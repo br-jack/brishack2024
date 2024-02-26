@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   ],
   quasar: { /* */ },
   auth: {
+    globalAppMiddleware: true,
     baseURL: '/api/auth',
     provider: {
       type: 'local',
@@ -14,7 +15,7 @@ export default defineNuxtConfig({
       sessionDataType: { username: 'string', type: "CIV | MED | INT" }
     },
     session: {
-      enableRefreshPeriodically: 5000
+      enableRefreshOnWindowFocus: false
     }
   }
 })
