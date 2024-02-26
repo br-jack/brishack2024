@@ -18,6 +18,7 @@ const information = await $fetch(`/api/users/${tagOwner}`, {
 
 <template>
     <ClientOnly>
+        <br>
         <div class="row justify-evenly content-between q-gutter-sm">
             <v-table :data="information">
                 <thead slot="head">
