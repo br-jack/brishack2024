@@ -21,9 +21,9 @@ export default eventHandler(async (event) => {
 
   let validhash = await validateHash("HASH", password)
 
-  if (!validhash) {
-    throw UNATHORIZED_USER
-  }
+  // if (!validhash) {
+  //   throw UNATHORIZED_USER
+  // }
 
   const expiresIn = 60 * 60 * 24
   const refreshToken = Math.floor(Math.random() * (1000000000000000 - 1 + 1)) + 1

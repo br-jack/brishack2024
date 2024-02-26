@@ -7,10 +7,11 @@ definePageMeta({
     navigateAuthenticatedTo: '/',
   }
 })
-const { signIn, token, data, status, lastRefreshedAt } = useAuth()
+const { signIn, token, data, status, lastRefreshedAt, signOut } = useAuth()
 const username = ref('')
 const password = ref('')
 const type = ref('')
+const errorVal = ref('')
 
 async function signInWithCredentials() {
   const credentials = {
@@ -21,7 +22,7 @@ async function signInWithCredentials() {
   try {
     await signIn(credentials, { redirect: false })
   } catch (error) {
-    console.error(error)
+    errorVal.value = "Wrong username and password"
   }
 
   console.log(await $fetch("/api/auth/session", {
@@ -40,10 +41,14 @@ async function signInWithCredentials() {
     <button @click="signInWithCredentials()">
       Login
     </button>
+    <button @click="signOut({ redirect: false })">
+      Signout
+    </button>
 
     <pre>Data: {{ data || 'no session data present, are you logged in?' }}</pre>
     <pre>Status: {{ status || 'no session data present, are you logged in?' }}</pre>
     <pre>Last refreshed at: {{ lastRefreshedAt || 'no refresh happened' }}</pre>
     <pre>JWT token: {{ token || 'no token present, are you logged in?' }}</pre>
+    <pre>{{ errorVal }}</pre>
   </div>
 </template>
