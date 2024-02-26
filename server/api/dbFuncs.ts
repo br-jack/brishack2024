@@ -1,9 +1,10 @@
 import { PrismaClient } from '@prisma/client'
+import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient()
 
 // INSERT INTO Institution VALUES (${username}, ${passwordHash}, ${name})
-const insertInstitution = async (username: string, password: string, name: string) => {
+export const insertInstitution = async (username: string, password: string, name: string) => {
     await prisma.institution.create({
         data: {
             InstUsername: username,
@@ -14,7 +15,7 @@ const insertInstitution = async (username: string, password: string, name: strin
 }
 
 // INSERT INTO MedUsers VALUES (${username}, ${passwordHash}, ${name}, ${instUsername})
-const insertMedUser = async (username: string, password: string, name: string, instUsername: string) => {
+export const insertMedUser = async (username: string, password: string, name: string, instUsername: string) => {
     await prisma.medUsers.create({
         data: {
             MedUsername: username,
@@ -26,7 +27,7 @@ const insertMedUser = async (username: string, password: string, name: string, i
 }
 
 // INSERT INTO CivUsers VALUES (${username}, ${name}, ${number}, ${passwordHash}, ${infoPublicallyAvailable}, ${dateOfBirth}, ${bloodType}, ${organDonor})
-const insertCivUser = async (username: string, name: string, number: string, password: string, infoPublicallyAvailable: boolean, dateOfBirth: Date, bloodType: string, organDonor: boolean) => {
+export const insertCivUser = async (username: string, name: string, number: string, password: string, infoPublicallyAvailable: boolean, dateOfBirth: Date, bloodType: string, organDonor: boolean) => {
     await prisma.civUsers.create({
         data: {
             CivUsername: username,
@@ -46,7 +47,7 @@ const insertCivUser = async (username: string, name: string, number: string, pas
 // SELECT MedicationID, MedicationName, DoseFrequency, AdditionalNotes FROM Medication WHERE CivUsername == “${username}”
 
 // for control panel and for when we've scanned a tag + validated access perm
-const getUserInfo = async (username: string) => {
+export const getUserInfo = async (username: string) => {
     const mainUserInfo = await prisma.civUsers.findUnique({
         where: {
             CivUsername: username
@@ -59,7 +60,7 @@ const getUserInfo = async (username: string) => {
 }
 
 // UPDATE CivUsers SET Name = “${newName}”, Number = “${newNumber}”, InfoPublicallyAvailable = “${new InfoPublicallyAvailable}”, PasswordHash = “${newPasswordHash}”,  DateOfBirth = “${newDateOfBirth}”, BloodType = “${newBloodType]”, OrganDonor = “${newOrganDonor}” WHERE CivUsername == “${username}”
-const updateUserProfile = async (username: string, newName: string, newNumber: string, newInfoPublicallyAvailable: boolean, newPassword: string, newDateOfBirth: Date, newBloodType: string, newOrganDonor: boolean) => {
+export const updateUserProfile = async (username: string, newName: string, newNumber: string, newInfoPublicallyAvailable: boolean, newPassword: string, newDateOfBirth: Date, newBloodType: string, newOrganDonor: boolean) => {
     await prisma.civUsers.update({
         where: {
             CivUsername: username
@@ -77,7 +78,7 @@ const updateUserProfile = async (username: string, newName: string, newNumber: s
 }
 
 // INSERT INTO Information (CivUsername, InfoName, AddInfo) VALUES (“${username}”, “${infoTitle}”, “${infoDes}”)
-const insertInformation = async (username: string, infoTitle: string, infoDes: string) => {
+export const insertInformation = async (username: string, infoTitle: string, infoDes: string) => {
     await prisma.information.create({
         data: {
             CivUsername: username,
@@ -88,7 +89,7 @@ const insertInformation = async (username: string, infoTitle: string, infoDes: s
 }
 
 // INSERT INTO Medication (CivUsername, MedicationName, DoseFrequency, AdditionalNotes) VALUES (“${username}”, “${medicationName}”,” ${doseFrequency}”, “${notes}”)
-const insertMedication = async (username: string, medicationName: string, doseFrequency: string, notes: string) => {
+export const insertMedication = async (username: string, medicationName: string, doseFrequency: string, notes: string) => {
     await prisma.medication.create({
         data: {
             CivUsername: username,
@@ -100,7 +101,7 @@ const insertMedication = async (username: string, medicationName: string, doseFr
 }
 
 // DELETE FROM Information WHERE InformationID == “${informationID}”
-const deleteInformation = async (informationID: number) => {
+export const deleteInformation = async (informationID: number) => {
     await prisma.information.delete({
         where: {
             InformationID: informationID
@@ -109,7 +110,7 @@ const deleteInformation = async (informationID: number) => {
 }
 
 // DELETE FROM Medication WHERE MedicationID == “${medicationID}”
-const deleteMedication = async (medicationID: number) => {
+export const deleteMedication = async (medicationID: number) => {
     await prisma.medication.delete({
         where: {
             MedicationID: medicationID
@@ -118,7 +119,7 @@ const deleteMedication = async (medicationID: number) => {
 }
 
 // INSERT INTO Tag (CivUsername, Name) VALUES (${username}, ${tagName})
-const registerTag = async (username: string, tagName: string) => {
+export const registerTag = async (username: string, tagName: string) => {
     await prisma.tag.create({
         data: {
             CivUsername: username,
@@ -128,7 +129,7 @@ const registerTag = async (username: string, tagName: string) => {
 }
 
 // SELECT CivUsername FROM CivUsers WHERE CivUsername == “${inputUsername}” AND PasswordHash == “${inputPasswordHash}”
-const verifyCivUser = async (inputUsername: string, inputPassword: string) => {
+export const verifyCivUser = async (inputUsername: string, inputPassword: string) => {
     const user = await prisma.civUsers.findUnique({
         where: {
             CivUsername: inputUsername
@@ -144,7 +145,7 @@ const verifyCivUser = async (inputUsername: string, inputPassword: string) => {
 }
 
 // SELECT CivUsername FROM Tag WHERE TagID == “${tagID}”
-const getTagOwner = async (tagID: number) => {
+export const getTagOwner = async (tagID: number) => {
     const tag = await prisma.tag.findUnique({
         where: {
             TagID: tagID
@@ -155,7 +156,7 @@ const getTagOwner = async (tagID: number) => {
 }
 
 // SELECT InfoPublicallyAvailable FROM CivUsers WHERE CivUsername == “${username}”
-const hasInfoPublicallyAvailable = async (username: string) => {
+export const hasInfoPublicallyAvailable = async (username: string) => {
     const user = await prisma.civUsers.findUnique({
         where: {
             CivUsername: username
@@ -165,7 +166,7 @@ const hasInfoPublicallyAvailable = async (username: string) => {
     return user.InfoPublicallyAvailable
 }
 // SELECT MedUsername FROM MedUsers WHERE MedUsername == “${username}”
-const verifyMedUser = async (username: string) => {
+export const verifyMedUser = async (username: string) => {
     const user = await prisma.medUsers.findUnique({
         where: {
             MedUsername: username
@@ -177,6 +178,18 @@ const verifyMedUser = async (username: string) => {
     return true
 }
 
-const canAccessUserdata = async (requester: string, target: string) => {
+export const canAccessUserdata = async (requester: string, target: string) => {
     return hasInfoPublicallyAvailable(target) || verifyMedUser(requester)
+}
+
+const SALT_ROUNDS = 10
+const hash = async (password: string) => {
+    let userHash;
+  bcrypt
+    .hash(password, SALT_ROUNDS)
+    .then(hash => {
+      userHash = hash
+    })
+    .catch(err => console.error(err.message))
+    return userHash
 }
