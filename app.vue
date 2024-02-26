@@ -1,8 +1,5 @@
 
 <script setup>
-import SmartTable from 'vuejs-smart-table'
-Vue.use(SmartTable)
-
 const getStorage = function (key) {
   if (window && window.localStorage.getItem(key)) {
     const data = JSON.parse(window.localStorage.getItem(key))

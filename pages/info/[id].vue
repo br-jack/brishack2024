@@ -1,4 +1,7 @@
 <script setup>
+import SmartTable from 'vuejs-smart-table'
+Vue.use(SmartTable)
+
 const { token, getSession } = useAuth()
 await getSession()
 console.log(token.value)
