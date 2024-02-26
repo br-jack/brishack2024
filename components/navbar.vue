@@ -8,13 +8,6 @@ const { status, signOut } = useAuth()
       <NuxtLink to='/login'>
         <q-btn color="white" text-color="black" label="Login" />
       </NuxtLink>
-<<<<<<< HEAD
-    </div>
-    <div v-if="status === 'authenticated'" >
-      <q-btn color="white" @click="signOut({ redirect: false })" text-color="black"
-        label="Logout" />
-    </div>
-=======
       <NuxtLink to='/add_info'>
         <q-btn color="white" text-color="black" label="Login" />
       </NuxtLink>
@@ -24,7 +17,6 @@ const { status, signOut } = useAuth()
     <NuxtLink to='/add_info'>
       <q-btn color="white" text-color="black" label="Add Info" />
     </NuxtLink>
->>>>>>> 5b21b63 (temp fun :()
   </nav>
 </template>
 
