@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
   try {
     session = ensureAuth(event);
   } catch {
-    session = { type: "CIV" };
+    session = { type: "CIV", username: null };
   }
 
   let person = await getUserInfo(name!);
@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
 
   person.PasswordHash = "";
 
-  if (session.type === "MED" || person?.InfoPublicallyAvailable) {
+  if (session.type === "MED" || person?.InfoPublicallyAvailable || session.username == person.CivUsername) {
     return person;
   }
 
