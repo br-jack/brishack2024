@@ -32,7 +32,7 @@ const information = await $fetch(`/api/users/${tagOwner}`, {
                 <tr>
                     <td>{{ information.Name }}</td>
                     <td>{{ information.Number }}</td>
-                    <td>{{ information.DateOfBirth }}</td>
+                    <td>{{ new Date(information.DateOfBirth).toDateString() }}</td>
                     <td>{{ information.BloodType }}</td>
                     <td>{{ information.OrganDonor ? "Yes" : "No" }}</td>
                     <td>{{ information.InfoPublicallyAvailable ? "Yes" : "No" }}</td>
