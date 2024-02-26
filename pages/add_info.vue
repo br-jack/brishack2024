@@ -83,4 +83,3 @@ margin: auto;
   text-align: center;
 }
 </style>
-  </template>
