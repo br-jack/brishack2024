@@ -23,8 +23,12 @@ async function attemptChange() {
       method: 'POST',
       headers: {
         "Authorization": token.value
+      },
+      body: {
+        name: name.value
       }
     })
+    name.value = ''
     await fetchInfo()
   }
   catch (error) {
