@@ -189,8 +189,17 @@ export const verifyIntUser = async (username: string, password: string) => {
     return await bcrypt.compare(password, user.PasswordHash)
 }
 
+export const isMedUser = async (username: string) => {
+    const user = await prisma.medUsers.findUnique({
+        where: {
+            MedUsername: username
+        }
+    })
+    return user != null
+}
+
 export const canAccessUserdata = async (requester: string, target: string) => {
-    return hasInfoPublicallyAvailable(target) || verifyMedUser(requester)
+    return hasInfoPublicallyAvailable(target) || isMedUser(requester)
 }
 
 export const civUsernameAvailable = async (username: string) => {
