@@ -17,7 +17,7 @@ const doseFrequency = ref('')
 const additionalInfo = ref('')
 
 async function attemptInput() {
-    try {
+  try {
     await $fetch('/api/info/med', {
 
       method: 'POST',
@@ -31,50 +31,52 @@ async function attemptInput() {
       }
     })
 
-    } 
-    catch (error) {
+  }
+  catch (error) {
     console.error(error)
-    }
+  }
 }
 
 </script>
 
 <template>
-    <div class="center">
-      <h3>Add Medication</h3>
-      <NuxtLink to="/redir_info">Back to the Info screen</NuxtLink>
-      <div class="parent center">
-        <div class="child center">
-          <label for="medicationName">Enter Medication Name: </label>
-          <input v-model="medicationName" type="text" />
-        </div>
-        <div class="child center">
-          <label for="doseFrequency">Enter Dose Frequency: </label>
-          <input v-model="doseFrequency" type="text" />
-        </div>
-        <div class="child center">
-          <label for="additionalInfo">Enter Additional Information: </label>
-          <textarea id="additionalInfo" type="text" cols="40" rows="8"/>
-        </div>
-        
-        <button @click="attemptInput()">
-        Add
-        </button>
+  <div class="center">
+    <h3>Add Medication</h3>
+    <NuxtLink to="/redir_info">Back to the Info screen</NuxtLink>
+    <div class="parent center">
+      <div class="child center">
+        <label for="medicationName">Enter Medication Name: </label>
+        <input v-model="medicationName" type="text" />
       </div>
+      <div class="child center">
+        <label for="doseFrequency">Enter Dose Frequency: </label>
+        <input v-model="doseFrequency" type="text" />
+      </div>
+      <div class="child center">
+        <label for="additionalInfo">Enter Additional Information: </label>
+        <textarea v-model="additionalInfo" type="text" cols="40" rows="8" />
+      </div>
+
+      <button @click="attemptInput()">
+        Add
+      </button>
     </div>
-  </template>
+  </div>
+</template>
   
-  <style scoped>
+<style scoped>
 .parent {
-  display: grid; 
-    grid-template-columns: 3fr 1fr; 
-    grid-gap: 20px; 
-    width: 50%; 
-    text-align: center;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 20px;
+  width: 50%;
+  text-align: center;
 }
+
 .child {
   margin: auto;
 }
+
 .center {
   margin: auto;
   width: 90%;
