@@ -56,15 +56,15 @@ async function attemptInput() {
           <label for="additionalInfo">Enter Additional Information: </label>
           <textarea id="additionalInfo" type="text" cols="40" rows="8"/>
         </div>
-
+        
         <button @click="attemptInput()">
         Add
         </button>
       </div>
     </div>
   </template>
-
-<style scoped>
+  
+  <style scoped>
 .parent {
   display: grid; 
     grid-template-columns: 3fr 1fr; 

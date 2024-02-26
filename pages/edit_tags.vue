@@ -1,40 +1,51 @@
 <!--USER USE ONLY-->
 <script setup>
-import { definePageMeta } from '#imports'
-definePageMeta({
-  auth: {
-    unauthenticatedOnly: true,
-    navigateAuthenticatedTo: '/',
-  }
-})
-const { signIn, token, data, status, lastRefreshedAt } = useAuth()
-const username = ref('')
-const password = ref('')
+const { token, data } = useAuth()
 const name = ref('')
+const info = ref({})
+
+
+async function fetchInfo() {
+  if (!token.value) {
+    await navigateTo("/login")
+  }
+  const fetched = await $fetch('/api/info/tag', {
+    headers: {
+      "Authorization": token.value
+    }
+  })
+  info.value = fetched
+}
 
 async function attemptChange() {
-    try {
-    //do something
-    } 
-    catch (error) {
+  try {
+    $fetch("/api/info/tag", {
+      method: 'POST',
+      headers: {
+        "Authorization": token.value
+      }
+    })
+    await fetchInfo()
+  }
+  catch (error) {
     console.error(error)
-    }
+  }
 
 }
+
+await fetchInfo()
 
 </script>
 
 <template>
-    <div>
-      <h1>Add or Edit Tags</h1>
+  <div>
+    <h1>Add or Edit Tags</h1>
 
+    <input v-model="name" placeholder="Name" type="text">
+    <pre>{{ info }}</pre>
 
-      <button @click="attemptChange()">
-        Submit
-      </button>
-  
-      <pre>Data: {{ data || 'no session data present, are you logged in?' }}</pre>
-      <pre>Last refreshed at: {{ lastRefreshedAt || 'no refresh happened' }}</pre>
-      <pre>JWT token: {{ token || 'no token present, are you logged in?' }}</pre>
-    </div>
-  </template>
+    <button @click="attemptChange()">
+      Submit
+    </button>
+  </div>
+</template>
