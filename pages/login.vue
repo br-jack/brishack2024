@@ -35,27 +35,30 @@ async function signInWithCredentials() {
 </script>
 <template>
   <div>
-    <h3>Enter your Account Details to continue</h3>
-    <div>
-      <label for="username">Enter Username: </label>
-      <input v-model="username" type="text"/>
-    </div>
-    <div>
-      <label for="password">Enter Password: </label>
-      <input v-model="password" type="password" />
-    </div>
-    <div>
-      <label for="type">Select User Type: </label>
-      <select name="type" v-model="type">
-        <option selected value="CIV">Normal User</option>
-        <option value="MED">Medical User</option>
-        <option value="INT">Institution</option>
-      </select>
-    </div>
-    <div>
-      <button @click="signInWithCredentials()">
-        Login
-      </button>
+    <h3>Enter your Account Details</h3>
+    <div class="parent">
+      <div class="child">
+        <label for="username">Enter Username: </label>
+        <input v-model="username" type="text"/>
+      </div>
+      <br>
+      <div class="child">
+        <label for="password">Enter Password: </label>
+        <input v-model="password" type="password" />
+      </div>
+      <div class="child">
+        <label for="type">Select User Type: </label>
+        <select name="type" v-model="type">
+          <option selected value="CIV">Normal User</option>
+          <option value="MED">Medical User</option>
+          <option value="INT">Institution</option>
+        </select>
+      </div>
+      <div class="child">
+        <button @click="signInWithCredentials()">
+          Login
+        </button>
+      </div>
     </div>
     <div>
       <pre>Data: {{ data || 'no session data present, are you logged in?' }}</pre>
@@ -66,3 +69,16 @@ async function signInWithCredentials() {
     </div>
   </div>
 </template>
+
+<style scoped>
+.parent {
+  display: grid; 
+    grid-template-columns: 3fr 1fr; 
+    grid-gap: 20px; 
+    width: 50%; 
+    text-align: center;
+}
+.child {
+  margin: auto;
+}
+</style>
