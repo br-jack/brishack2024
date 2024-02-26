@@ -150,7 +150,7 @@ export const getTagOwner = async (tagID: number) => {
             TagID: tagID
         }
     })
-    if (tag == null) { throw new Error('Tag not found') }
+    if (tag == null) { return null }
     return tag.CivUsername
 }
 
